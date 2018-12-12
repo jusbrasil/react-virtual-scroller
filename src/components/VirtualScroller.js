@@ -23,6 +23,7 @@ class VirtualScroller extends React.PureComponent {
     onNearStart: PropTypes.func,
     onNearEnd: PropTypes.func,
     onAtEnd: PropTypes.func,
+    onPositioningUpdate: PropTypes.func,
   };
 
   static defaultProps = {
@@ -82,6 +83,9 @@ class VirtualScroller extends React.PureComponent {
   _handlePositioningUpdate(position) {
     if (this._scrollTracker) {
       this._scrollTracker.handlePositioningUpdate(position);
+    }
+    if (this.props.onPositioningUpdate) {
+      this.props.onPositioningUpdate(position);
     }
   }
 
