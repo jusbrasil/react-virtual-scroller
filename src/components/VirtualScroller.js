@@ -24,6 +24,7 @@ class VirtualScroller extends React.PureComponent {
     onNearEnd: PropTypes.func,
     onAtEnd: PropTypes.func,
     onPositioningUpdate: PropTypes.func,
+    enableOffsetCorrection: PropTypes.func,
   };
 
   static defaultProps = {
@@ -140,6 +141,7 @@ class VirtualScroller extends React.PureComponent {
         assumedItemHeight={assumedItemHeight}
         viewport={viewport}
         onPositioningUpdate={this._handlePositioningUpdate}
+        enableOffsetCorrection={this.props.enableOffsetCorrection}
       />
     );
   }

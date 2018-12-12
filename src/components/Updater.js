@@ -106,6 +106,7 @@ class Updater extends React.PureComponent {
     renderItem: PropTypes.func.isRequired,
     viewport: PropTypes.instanceOf(Viewport).isRequired,
     onPositioningUpdate: PropTypes.func,
+    enableOffsetCorrection: PropTypes.func,
     assumedItemHeight: PropTypes.number,
     offscreenToViewportRatio: PropTypes.number,
   };
@@ -158,7 +159,9 @@ class Updater extends React.PureComponent {
   }
 
   _onHeightsUpdate(prevPostion, nextPostion) {
-    this.props.viewport.scrollBy(offsetCorrection(prevPostion, nextPostion));
+    if (!this.props.enableOffsetCorrection || this.props.enableOffsetCorrection()) {
+      this.props.viewport.scrollBy(offsetCorrection(prevPostion, nextPostion));
+    }
   }
 
   _recordHeights() {
