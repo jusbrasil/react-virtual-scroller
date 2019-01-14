@@ -109,6 +109,7 @@ class Updater extends React.PureComponent {
     enableOffsetCorrection: PropTypes.func,
     assumedItemHeight: PropTypes.number,
     offscreenToViewportRatio: PropTypes.number,
+    additionalOffscanRows: PropTypes.number,
   };
 
   static defaultProps = {
@@ -275,11 +276,15 @@ class Updater extends React.PureComponent {
     let startIndex = findIndex(list, item => rects[item.id].getBottom() > renderRectTop);
     if (startIndex < 0) {
       startIndex = list.length - 1;
+    } else {
+      startIndex = Math.max(0, startIndex - this.props.additionalOffscanRows);
     }
 
     let endIndex = findIndex(list, item => rects[item.id].getTop() >= renderRectBottom, startIndex);
     if (endIndex < 0) {
       endIndex = list.length;
+    } else {
+      endIndex = Math.min(list.length, endIndex + this.props.additionalOffscanRows);
     }
 
     this._schedulePositioningNotification();
