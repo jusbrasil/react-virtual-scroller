@@ -1,6 +1,6 @@
 {
   "name": "@jusbrasil/react-virtual-scroller",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-alpha.6",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
   "module": "es/index.js",
